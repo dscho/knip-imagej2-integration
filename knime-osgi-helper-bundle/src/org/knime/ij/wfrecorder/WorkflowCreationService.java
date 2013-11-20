@@ -100,7 +100,7 @@ public class WorkflowCreationService implements Map<Object, Object> {
                         dynamicNodeTemplate.setFactory((Class<? extends NodeFactory<? extends NodeModel>>)fac
                                 .getClass());
 
-                        NodeID dest = m_currentWMF.addNode(dynamicNodeTemplate.createFactoryInstance());
+                        NodeID dest = m_currentWMF.createAndAddNode(dynamicNodeTemplate.createFactoryInstance());
                         m_currentWMF.addConnection(m_activeNode, 1, dest, 1);
                         m_activeNode = dest;
                         return true;
@@ -116,13 +116,10 @@ public class WorkflowCreationService implements Map<Object, Object> {
 
                         m_currentWMF.clearWaitingLoopList();
 
-                        m_currentWMF.getClass().getMethod("addNode", NodeFactory.class);
-
-                        System.out.println(WorkflowManager.class.getClassLoader().toString());
-
+                        System.out.println("ABC " + NodeFactory.class.getClassLoader().toString());
 
                         // Add ImageReader node
-                        m_activeNode = m_currentWMF.addNode(new ImgReaderNodeFactory());
+                        m_activeNode = m_currentWMF.createAndAddNode(new ImgReaderNodeFactory());
                         return true;
                     }
 
