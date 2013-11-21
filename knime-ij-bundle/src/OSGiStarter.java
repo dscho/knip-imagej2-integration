@@ -111,7 +111,9 @@ public class OSGiStarter implements IOSGiStarter {
     }
 
     private Framework startFramework() throws BundleException {
-        File knimeHome = new File(Framework.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getParentFile().getParentFile();
+        // Here, we assume that the OSGi Framework class was loaded from the org.eclipse.osgi .jar file contained in KNIME_HOME/plugins/
+        String frameworkClassLocation = Framework.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+        File knimeHome = new File(frameworkClassLocation).getParentFile().getParentFile();
 
         FrameworkFactory frameworkFactory = ServiceLoader.load(FrameworkFactory.class, getClass().getClassLoader()).iterator().next();
         Map<String, String> config = new HashMap<String, String>();
