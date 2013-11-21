@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Bundle-Name: KNIME ImageJ Bundle
+Bundle-SymbolicName: knime-ij-bundle;singleton:=true
+Bundle-ManifestVersion: 2
+Bundle-Version: 0.7.0.qualifier
+Bundle-Vendor: University of Konstanz
+Eclipse-RegisterBuddy: org.knime.knip.scijava, org.knime.knip.imagej2.core
+Require-Bundle: org.eclipse.osgi;bundle-version="3.7.2",
+ org.knime.workbench.repository;bundle-version="[2.8.0,3.0.0)",
+ org.knime.knip.imagej2.core;bundle-version="[0.7.0,1.0.0)",
+ org.knime.knip.io;bundle-version="[1.0.4,2.0.0)",
+ org.knime.knip.core;bundle-version="[1.0.5,2.0.0)",
+ org.knime.knip.scijava;bundle-version="2.2.0",
+ org.knime.knip.base;bundle-version="1.1.0",
+ org.knime.core;bundle-version="2.8.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ClassPath: .,
+ lib/simple-commands-1.0.0-SNAPSHOT.jar
+Bundle-Activator: org.knime.ij.wfrecorder.KNIMEOSGiHelperBundleActivator
+Bundle-ActivationPolicy: lazy
