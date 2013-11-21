@@ -51,32 +51,6 @@
 	</dependencies>
 
 	<build>
-		<plugins>
-			<plugin>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>copy</id>
-						<phase>install</phase>
-						<goals>
-							<goal>copy</goal>
-						</goals>
-						<configuration>
-							<artifactItems>
-								<artifactItem>
-									<groupId>${project.groupId}</groupId>
-									<artifactId>${project.artifactId}</artifactId>
-									<version>${project.version}</version>
-									<type>jar</type>
-									<outputDirectory>${project.build.directory}/../../knime-ij-bundle/lib/</outputDirectory>
-									<!-- <destFileName>ij-launcher-${imagej-launcher.version}.jar</destFileName> -->
-								</artifactItem>
-							</artifactItems>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
 		<pluginManagement>
 			<plugins>
 				<!-- This plugin's configuration is used to store Eclipse m2e settings
@@ -121,4 +95,43 @@
 			</plugins>
 		</pluginManagement>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>is-next-to-bundle</id>
+			<activation>
+				<file>
+					<exists>${project.build.directory}/../../knime-ij-bundle/lib/</exists>
+				</file>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-dependency-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>copy</id>
+								<phase>install</phase>
+								<goals>
+									<goal>copy</goal>
+								</goals>
+								<configuration>
+									<artifactItems>
+										<artifactItem>
+											<groupId>${project.groupId}</groupId>
+											<artifactId>${project.artifactId}</artifactId>
+											<version>${project.version}</version>
+											<type>jar</type>
+											<outputDirectory>${project.build.directory}/../../knime-ij-bundle/lib/</outputDirectory>
+											<!-- <destFileName>ij-launcher-${imagej-launcher.version}.jar</destFileName> -->
+										</artifactItem>
+									</artifactItems>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
