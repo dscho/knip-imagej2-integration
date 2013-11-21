@@ -66,6 +66,22 @@ import org.osgi.framework.launch.FrameworkFactory;
  * Created on 20.11.2013 by Christian Dietz
  */
 
+/**
+ * Starts OSGi for use in projects not linking directly to OSGi.
+ * <p>
+ * The idea is to load this class in a custom class loader, exposing the IOSGiStarter interface.
+ * </p>
+ * <p>
+ * This implementation then starts up OSGi such that the classes found in the calling class loader (i.e. the custom
+ * class loader's parent class loader) are *not* handled by OSGi but instead by the existing class loader.
+ * </p>
+ * <p>
+ * That way, we can interact directly with bundles implementing interfaces defined in the calling class loader and
+ * passing objects back and forth whose classes are defined in the same class loader, too.
+ * </p>
+ *
+ * @author Christian Dietz & Johannes Schindelin
+ */
 public class OSGiStarter implements IOSGiStarter {
 
     private WorkflowAccess access = null;
