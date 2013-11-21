@@ -9,6 +9,21 @@ import org.eclipse.osgi.framework.adaptor.BundleData;
 import org.eclipse.osgi.framework.adaptor.ClassLoaderDelegateHook;
 
 
+/**
+ * Adds our custom class loader delegator hook.
+ * <p>
+ * In order to be able to interact with callers that have been started outside of OSGi's control, we need to re-use that
+ * class loader for the classes whose instances we want to pass back and forth.
+ * </p>
+ * <p>
+ * The idea to solve this conundrum is that the outside caller constructs a custom class loader to load this project
+ * (and the OSGi base .jar), with its own class loader as parent class loader. Then, this {@link HookConfigurator}
+ * implementation installs itself as a {@link ClassLoaderDelegateHook} that tries first of all to load the classes in
+ * the original class loader and prevents OSGi from resolving those classes differently.
+ * </p>
+ *
+ * @author Johannes Schindelin
+ */
 public class OSGiStarterHookConfigurator implements HookConfigurator, ClassLoaderDelegateHook {
 
     // resolve class loader of parent framework (see KNIMEBridge)
