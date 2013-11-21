@@ -24,6 +24,7 @@ import org.eclipse.osgi.framework.adaptor.ClassLoaderDelegateHook;
  *
  * @author Johannes Schindelin
  */
+@SuppressWarnings("restriction")
 public class OSGiStarterHookConfigurator implements HookConfigurator, ClassLoaderDelegateHook {
 
     // resolve class loader of parent framework (see KNIMEBridge)
