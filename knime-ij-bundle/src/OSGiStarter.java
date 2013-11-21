@@ -127,7 +127,7 @@ public class OSGiStarter implements IOSGiStarter {
         Framework framework = frameworkFactory.newFramework(config);
         framework.start();
 
-        installAllPlugins(knimeHome, framework.getBundleContext());
+        installAllBundles(knimeHome, framework.getBundleContext());
         installThisBundle(framework);
 
         return framework;
@@ -157,7 +157,7 @@ public class OSGiStarter implements IOSGiStarter {
         bundle.start();
     }
 
-    protected void installAllPlugins(final File knimeHome, final BundleContext context) {
+    private void installAllBundles(final File knimeHome, final BundleContext context) {
         new File(knimeHome, "/plugins").listFiles(new FileFilter() {
             //
             @Override
