@@ -3,6 +3,11 @@ package org.knime.ij.wfrecorder;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
+/**
+ * Activates this OSGi bundle.
+ *
+ * @author Christian Dietz
+ */
 public class KNIMEOSGiHelperBundleActivator implements BundleActivator {
     //    Logger log = Logger.getLogger(this.getClass().getName());
 
